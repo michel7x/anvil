@@ -1,0 +1,19 @@
+repos:
+  - repo: https://github.com/astral-sh/uv-pre-commit
+    rev: 0.13.0
+    hooks:
+      - id: uv-lock # keep uv.lock in sync with pyproject.toml
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.17.0
+    hooks:
+      - id: ruff
+        args: [--fix]
+      - id: ruff-format
+  - repo: local
+    hooks:
+      - id: sync-ai-context
+        name: sync AI context (.github -> .claude)
+        entry: uv run python scripts/sync_ai_context.py --check
+        language: system
+        pass_filenames: false
+        files: ^(\.github/instructions/|\.agents/skills/|\.claude/(rules|skills)/|scripts/sync_ai_context\.py)
