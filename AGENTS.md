@@ -5,11 +5,24 @@ This file is the **single source of truth**. `CLAUDE.md` and `.github/copilot-in
 
 ## Project overview
 
-Anvil is a command-line tool that **forges project scaffolds** for new applications. It generates the directory structure, tooling configuration, and AI context-engineering layer (for Claude Code and GitHub Copilot) that a new project starts from.
+Anvil is a command-line tool that forges **context-engineering scaffolds for AI coding agents**. A scaffold is the set of files that gives agents such as Claude Code and GitHub Copilot the context they need to work well in a project:
+- shared rules (`AGENTS.md`) and tool entry points (`CLAUDE.md`, `.github/copilot-instructions.md`)
+- path-scoped rules, Agent Skills, custom agents, MCP configuration, and agent settings/hooks
+- the architecture and decision docs that agents read before making changes
+
+**Goals**
+1. **Agent-ready from day one**: a new application starts with complete, accurate context for AI agents.
+2. **Multi-agent, single source of truth**: one canonical context serves every supported agent (Claude Code and GitHub Copilot first). Per-tool files are generated, not maintained by hand, so they never drift.
+3. **Stack-aware**: blueprints encode real commands and conventions for the target stack, starting with Python (uv, ruff, mypy, pytest).
+4. **Kept current**: forged projects include the tooling (sync script, `--check` in CI and pre-commit) that keeps the context consistent as the project evolves.
+
+**Non-goals**
+- Generating application code or business logic. The scaffold describes and guides the project; it doesn't implement it.
+- Being an AI agent or calling LLMs. Anvil produces context files deterministically.
 
 Current status: the CLI structure exists (`new`, `list`, `version`), but scaffold generation is **not implemented yet**. Stub commands exit with code 1. The template format and engine are still to be decided (see `docs/adr/0004-anvil-as-scaffold-generator-cli.md`).
 
-The context files in this repo (`AGENTS.md`, `.agents/`, `.github/`, `.claude/`) are Anvil's **own** development context. They are not templates.
+The context files in this repo (`AGENTS.md`, `.agents/`, `.github/`, `.claude/`) are Anvil's **own** development context. They are not templates, but they are the reference for what the first (Python) blueprint will produce.
 
 ## Tech stack
 

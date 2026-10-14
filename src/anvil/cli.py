@@ -11,7 +11,7 @@ from anvil.commands.version import version
 
 app = typer.Typer(
     name="anvil",
-    help="Forge project scaffolds for new applications.",
+    help="Forge context-engineering scaffolds for AI coding agents.",
     no_args_is_help=True,
     add_completion=False,
 )
@@ -21,7 +21,7 @@ app = typer.Typer(
 def main(
     verbose: Annotated[bool, typer.Option("--verbose", "-v", help="Enable debug logging.")] = False,
 ) -> None:
-    """Forge project scaffolds for new applications."""
+    """Forge context-engineering scaffolds for AI coding agents."""
     logging.basicConfig(
         level=logging.DEBUG if verbose else logging.WARNING,
         format="%(levelname)s %(name)s: %(message)s",

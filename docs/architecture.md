@@ -4,7 +4,7 @@ Keep this document short and current. Agents read it before making structural ch
 
 ## Purpose
 
-Anvil is a CLI that forges project scaffolds. From a named template (blueprint), it generates the directory structure, tooling configuration, and AI context-engineering layer for a new application, so that every project starts from the same proven baseline.
+Anvil is a CLI that forges **context-engineering scaffolds for AI coding agents**. From a named blueprint, it generates the files that Claude Code, GitHub Copilot, and other agents read: shared rules, per-tool entry points, scoped rules, skills, custom agents, MCP and agent settings, and architecture/decision docs. Every project then starts agent-ready from the same proven baseline. Goals and non-goals are listed in `AGENTS.md` (Project overview).
 
 ## Components
 

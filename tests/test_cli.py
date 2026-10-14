@@ -69,4 +69,4 @@ def test_module_entry_point() -> None:
     )
 
     assert result.returncode == 0
-    assert "Forge project scaffolds" in result.stdout
+    assert "context-engineering scaffolds" in result.stdout

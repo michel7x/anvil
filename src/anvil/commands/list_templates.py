@@ -1,8 +1,8 @@
-"""``anvil list``: show the available templates."""
+"""``anvil list``: show the available blueprints."""
 
 from anvil.commands._stub import not_implemented
 
 
 def list_templates() -> None:
-    """List the templates Anvil can forge."""
+    """List the context blueprints Anvil can forge."""
     not_implemented("list")

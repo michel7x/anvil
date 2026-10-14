@@ -1,6 +1,6 @@
 # 0004. Turn Anvil into a scaffold-generator CLI built with Typer
 
-- Status: Accepted
+- Status: Accepted (scope clarified by 0005)
 - Date: 2026-10-14
 
 ## Context

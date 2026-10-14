@@ -1,11 +1,11 @@
 [project]
 name = "anvil"
 version = "0.1.0"
-description = "Forge project scaffolds for new applications."
+description = "Forge context-engineering scaffolds for AI coding agents (Claude Code, GitHub Copilot)."
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.14"
-keywords = ["scaffold", "generator", "cli", "template"]
+keywords = ["context-engineering", "ai-agents", "claude-code", "github-copilot", "agents-md", "scaffold", "cli"]
 dependencies = [
     "typer>=0.27.3",
 ]

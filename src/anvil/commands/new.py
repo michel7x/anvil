@@ -1,4 +1,4 @@
-"""``anvil new``: forge a new project scaffold."""
+"""``anvil new``: forge a context-engineering scaffold for a project."""
 
 from pathlib import Path
 from typing import Annotated
@@ -9,9 +9,9 @@ from anvil.commands._stub import not_implemented
 
 
 def new(
-    name: Annotated[str, typer.Argument(help="Name of the project to create.")],
+    name: Annotated[str, typer.Argument(help="Name of the project to scaffold.")],
     template: Annotated[
-        str, typer.Option("--template", "-t", help="Template (blueprint) to forge from.")
+        str, typer.Option("--template", "-t", help="Blueprint to forge from (target stack).")
     ] = "python",
     output: Annotated[
         Path,
@@ -21,5 +21,5 @@ def new(
         bool, typer.Option("--force", help="Overwrite the target directory if it exists.")
     ] = False,
 ) -> None:
-    """Forge a new project scaffold from a template."""
+    """Forge a context-engineering scaffold for a new project from a blueprint."""
     not_implemented("new")
