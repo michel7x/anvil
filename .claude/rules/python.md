@@ -3,7 +3,6 @@ description: Python coding standards for all source files
 paths:
   - "**/*.py"
 ---
-<!-- GENERATED from .github/instructions/python.instructions.md by scripts/sync_ai_context.py. Do not edit. -->
 
 # Python rules
 

@@ -5,7 +5,6 @@ paths:
   - "uv.lock"
   - ".python-version"
 ---
-<!-- GENERATED from .github/instructions/packaging.instructions.md by scripts/sync_ai_context.py. Do not edit. -->
 
 # Packaging rules (uv)
 

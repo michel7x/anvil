@@ -4,7 +4,6 @@ paths:
   - "src/anvil/cli.py"
   - "src/anvil/commands/**"
 ---
-<!-- GENERATED from .github/instructions/cli.instructions.md by scripts/sync_ai_context.py. Do not edit. -->
 
 # CLI rules (Typer)
 

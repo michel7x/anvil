@@ -3,7 +3,6 @@ description: pytest conventions for the test suite
 paths:
   - "tests/**"
 ---
-<!-- GENERATED from .github/instructions/tests.instructions.md by scripts/sync_ai_context.py. Do not edit. -->
 
 # Testing rules
 

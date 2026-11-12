@@ -48,6 +48,22 @@ anvil list                           # list available blueprints (not implemente
 anvil version                        # show version
 ```
 
+## Run in a container
+
+The image runs Anvil without uv or Python on the host. [`containers/anvil.containerfile`](containers/anvil.containerfile) builds with any OCI engine. Run the build from the repository root:
+
+```bash
+docker build -f containers/anvil.containerfile -t anvil .
+podman build -f containers/anvil.containerfile -t anvil .
+```
+
+The container works in `/work`, so mount the directory where the scaffold should go. The flags differ per engine, so that generated files end up owned by you:
+
+```bash
+docker run --rm -v "$PWD:/work" --user "$(id -u):$(id -g)" anvil new my-app
+podman run --rm -v "$PWD:/work:Z" --userns=keep-id anvil new my-app   # rootless
+```
+
 ## Development
 
 ```bash
@@ -59,9 +75,9 @@ uv add <pkg>             # add a dependency (never pip install)
 uv build                 # build sdist + wheel into dist/
 ```
 
-All dependency, environment, version, and build operations go through **uv**. See the "uv only" section of [`AGENTS.md`](AGENTS.md).
+All dependency, environment, version, and build operations go through **uv**. See the "uv only" section of [`CLAUDE.md`](CLAUDE.md).
 
-Contributor and AI-agent guidelines are in [`AGENTS.md`](AGENTS.md). The AI context layer is explained in [`docs/ai/README.md`](docs/ai/README.md), architecture in [`docs/architecture.md`](docs/architecture.md), and decisions in [`docs/adr/`](docs/adr/).
+Contributor and AI-agent guidelines are in [`CLAUDE.md`](CLAUDE.md). The AI context layer is explained in [`docs/ai/README.md`](docs/ai/README.md), architecture in [`docs/architecture.md`](docs/architecture.md), and decisions in [`docs/adr/`](docs/adr/).
 
 ## License
 

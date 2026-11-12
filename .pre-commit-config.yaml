@@ -9,11 +9,3 @@ repos:
       - id: ruff
         args: [--fix]
       - id: ruff-format
-  - repo: local
-    hooks:
-      - id: sync-ai-context
-        name: sync AI context (.github -> .claude)
-        entry: uv run python scripts/sync_ai_context.py --check
-        language: system
-        pass_filenames: false
-        files: ^(\.github/instructions/|\.agents/skills/|\.claude/(rules|skills)/|scripts/sync_ai_context\.py)

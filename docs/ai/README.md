@@ -1,47 +1,51 @@
 # AI context layer
 
-This repository ships context for **Claude Code** and **GitHub Copilot**. The goal is that both tools follow the same rules and nothing is maintained twice.
+This repository is developed with **Claude Code**, so its own context is Claude-only and is edited in place. The exception is source control, which **GitHub Copilot** owns. This is separate from what Anvil produces: forged scaffolds still target other agents too. See [ADR 0006](../adr/0006-claude-only-development-context.md) and [ADR 0007](../adr/0007-copilot-owns-source-control.md).
 
-## What each tool reads
+## What Claude Code reads
 
-| Purpose | Source of truth | Claude Code | GitHub Copilot |
-|---------|-----------------|-------------|----------------|
-| Project-wide rules (incl. "uv only") | `AGENTS.md` | via `CLAUDE.md` → `@AGENTS.md` | `AGENTS.md` (native) + `.github/copilot-instructions.md` |
-| Path-scoped rules | `.github/instructions/*.instructions.md` | `.claude/rules/*.md` *(generated)* | same file (`applyTo`) |
-| Custom agents | written per tool, same body | `.claude/agents/*.md` | `.github/agents/*.agent.md` |
-| Skills / reusable workflows | `.agents/skills/*/SKILL.md` | `.claude/skills/` *(generated)* → `/name` | same folder (native) → `/name` |
-| MCP servers | written per tool | `.mcp.json` | `.vscode/mcp.json` |
-| Settings / hooks | written per tool | `.claude/settings.json` | `.vscode/settings.json` |
-| Cloud agent env | n/a | n/a | `.github/workflows/copilot-setup-steps.yml` |
-| Architecture & decisions | `docs/architecture.md`, `docs/adr/` | linked from `AGENTS.md` | linked from `AGENTS.md` |
+| Purpose | File |
+|---------|------|
+| Project-wide rules (incl. "uv only") | `CLAUDE.md` |
+| Path-scoped rules | `.claude/rules/*.md` |
+| Custom agents | `.claude/agents/*.md` |
+| Skills / reusable workflows | `.claude/skills/*/SKILL.md` → `/name` |
+| MCP servers | `.mcp.json` |
+| Settings / hooks | `.claude/settings.json` |
+| Architecture & decisions | `docs/architecture.md`, `docs/adr/` (linked from `CLAUDE.md`) |
+
+## What GitHub Copilot reads
+
+Copilot handles commits, branches, pushes, pull requests, issues, and code review, and acts only when the developer asks.
+
+| Purpose | File |
+|---------|------|
+| Role, allowed actions, and limits | `.github/copilot-instructions.md` |
+| Commit message format | `.github/git-message-format.md` |
+| One skill per allowed action | `.github/skills/*/SKILL.md` → `/name` |
+| Commit message and PR description buttons in VS Code | `.vscode/settings.json` |
 
 ## Editing workflow
 
-1. **Project-wide rule** → edit `AGENTS.md`. Keep it short (under about 150 lines). Move detail into `docs/` and link to it.
-2. **Rule for certain files** → add or edit `.github/instructions/<name>.instructions.md` with `applyTo: "glob,glob"`.
-3. **Reusable workflow** → add `.agents/skills/<name>/SKILL.md` with `name`, `description`, and optionally `argument-hint`. Add `disable-model-invocation: true` if it should run only when invoked with `/name`. Refer to "the user's request or arguments" instead of a placeholder variable, so the same text works in both tools. Don't use prompt files (`*.prompt.md`): VS Code has deprecated them.
-4. Run `uv run python scripts/sync_ai_context.py`. CI and pre-commit run it with `--check`.
-5. **Agent** → edit both `.claude/agents/<name>.md` and `.github/agents/<name>.agent.md`. Keep the bodies identical.
-6. Supporting files (templates, scripts) go next to `SKILL.md` and are mirrored too.
+1. **Project-wide rule** → edit `CLAUDE.md`. Keep it short (under about 150 lines). Move detail into `docs/` and link to it.
+2. **Rule for certain files** → add or edit `.claude/rules/<name>.md` with a `paths:` list of globs in the frontmatter.
+3. **Reusable workflow** → add `.claude/skills/<name>/SKILL.md` with `name`, `description`, and optionally `argument-hint`. Add `disable-model-invocation: true` if it should run only when invoked with `/name`. Refer to "the user's request or arguments" instead of a placeholder variable.
+4. **Agent** → edit `.claude/agents/<name>.md`.
+5. Supporting files (templates, scripts) go next to `SKILL.md`.
 
 ## Adding an MCP server
 
-Add the server to both files. The top-level keys differ:
+Add the server to `.mcp.json`:
 
-```jsonc
-// .mcp.json (Claude Code)
+```json
 { "mcpServers": { "example": { "command": "uvx", "args": ["example-mcp"] } } }
-
-// .vscode/mcp.json (Copilot)
-{ "servers": { "example": { "command": "uvx", "args": ["example-mcp"] } } }
 ```
 
-Never put secrets in these files. Use environment variables or input prompts.
+Never put secrets in this file. Use environment variables or input prompts.
 
 ## Personal overrides (not committed)
 
-- Claude: `CLAUDE.local.md` and `.claude/settings.local.json`.
-- Copilot: VS Code user settings, plus `~/.copilot/skills` and `~/.copilot/instructions`.
+Use `CLAUDE.local.md` and `.claude/settings.local.json`.
 
 ## Writing good context
 

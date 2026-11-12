@@ -4,13 +4,12 @@ description: Write or improve pytest tests for a module or behaviour
 argument-hint: Module path, function, or behaviour
 disable-model-invocation: true
 ---
-<!-- GENERATED from .agents/skills/write-tests/SKILL.md by scripts/sync_ai_context.py. Do not edit. -->
 
 # Write tests
 
 Write pytest tests for the module, function, or behaviour named in the user's request or arguments.
 
-- Follow the testing rules in `AGENTS.md` and the `tests/` instructions.
+- Follow the testing rules in `CLAUDE.md` and the `tests/` scoped rules.
 - Cover the happy path, edge cases (empty, boundary, invalid input), and error paths.
 - Use `parametrize` for tables of cases and keep tests offline and deterministic.
 - Run `uv run pytest --cov=anvil --cov-report=term-missing` and report the coverage change for the target.

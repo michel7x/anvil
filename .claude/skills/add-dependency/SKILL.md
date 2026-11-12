@@ -2,13 +2,12 @@
 name: add-dependency
 description: Add, upgrade, or remove a Python dependency with uv. Use whenever a package needs to be installed or a dependency changed. Never use pip, poetry, or hand edits.
 ---
-<!-- GENERATED from .agents/skills/add-dependency/SKILL.md by scripts/sync_ai_context.py. Do not edit. -->
 
 # Manage a dependency (uv only)
 
 Every dependency change goes through `uv`. Never run `pip install`, `python -m pip`, `poetry add`, or `pipenv install`. Never hand-edit the dependency tables in `pyproject.toml`, and never edit `uv.lock`.
 
-Get the user's approval before you add a runtime dependency (see `AGENTS.md`, Boundaries).
+Get the user's approval before you add a runtime dependency (see `CLAUDE.md`, Boundaries).
 
 1. **Justify it.** Check whether the stdlib or an existing dependency already covers the need. Run `uv tree` to see what is installed.
 2. **Vet it.** Confirm the package is maintained (recent releases), widely used, has typed code or stubs, and has a licence compatible with MIT.
@@ -19,8 +18,8 @@ Get the user's approval before you add a runtime dependency (see `AGENTS.md`, Bo
    - Optional extra: `uv add --optional <extra> "<pkg>>=X.Y"`
    - If the package is untyped, add its stubs as a dev dependency: `uv add --dev types-<pkg>`.
 4. **Verify.** Run `uv run ruff check . && uv run mypy && uv run pytest`.
-5. **Commit** `pyproject.toml` and `uv.lock` together.
-6. **Document it.** If the package is significant (a framework, database, or client), add it to the Tech stack section in `AGENTS.md` and consider an ADR using the `write-adr` skill.
+5. **Keep `pyproject.toml` and `uv.lock` together.** Copilot commits them.
+6. **Document it.** If the package is significant (a framework, database, or client), add it to the Tech stack section in `CLAUDE.md` and consider an ADR using the `write-adr` skill.
 
 Other operations:
 - Upgrade one package: `uv lock --upgrade-package <pkg> && uv sync`
