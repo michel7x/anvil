@@ -2,7 +2,6 @@
 name: write-adr
 description: Record an architecture decision as a numbered ADR in docs/adr/. Use when a change introduces or alters a framework, data store, external service, module boundary, or other hard-to-reverse design choice.
 ---
-<!-- GENERATED from .agents/skills/write-adr/SKILL.md by scripts/sync_ai_context.py. Do not edit. -->
 
 # Write an ADR
 
@@ -15,4 +14,4 @@ description: Record an architecture decision as a numbered ADR in docs/adr/. Use
    - **Consequences**: positive, negative, and follow-up work.
 4. Set the status to `Proposed`. A human changes it to `Accepted`.
 5. If the ADR supersedes an earlier one, set the old ADR's status to `Superseded by NNNN`. Don't change anything else in it.
-6. If the decision changes the stack, commands, or layout, update `AGENTS.md` and `docs/architecture.md` too.
+6. If the decision changes the stack, commands, or layout, update `CLAUDE.md` and `docs/architecture.md` too.

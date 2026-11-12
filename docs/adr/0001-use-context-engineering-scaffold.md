@@ -1,6 +1,6 @@
 # 0001. Use a shared context-engineering scaffold for AI agents
 
-- Status: Accepted (amended by 0003)
+- Status: Superseded by 0006
 - Date: 2026-10-13
 
 ## Context

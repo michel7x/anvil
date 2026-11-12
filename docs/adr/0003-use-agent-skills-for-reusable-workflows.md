@@ -1,6 +1,6 @@
 # 0003. Use Agent Skills instead of prompt files for reusable workflows
 
-- Status: Accepted
+- Status: Superseded by 0006
 - Date: 2026-10-13
 
 ## Context

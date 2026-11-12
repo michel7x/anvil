@@ -10,7 +10,6 @@
       "Bash(uv run ruff:*)",
       "Bash(uv run mypy:*)",
       "Bash(uv run python -m anvil:*)",
-      "Bash(uv run python scripts/sync_ai_context.py:*)",
       "Bash(git status:*)",
       "Bash(git diff:*)",
       "Bash(git log:*)"
@@ -33,9 +32,9 @@
       "Bash(poetry:*)",
       "Bash(pipenv:*)",
       "Bash(conda install:*)",
-      "Edit(./uv.lock)",
-      "Write(./uv.lock)"
-    ]
+      "Edit(./uv.lock)"
+    ],
+    "defaultMode": "plan"
   },
   "hooks": {
     "PostToolUse": [
