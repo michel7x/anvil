@@ -45,6 +45,7 @@ Run everything through `uv run` so the project environment is always used.
 | Lint (autofix) | `uv run ruff check --fix .` |
 | Format | `uv run ruff format .` |
 | Type-check | `uv run mypy` |
+| Lint container files | `docker run --rm -i hadolint/hadolint < containers/anvil.containerfile` |
 | Add a dependency | `uv add <pkg>` (runtime) / `uv add --dev <pkg>` (dev) / `uv add --group <name> <pkg>` |
 | Remove a dependency | `uv remove <pkg>` |
 | Upgrade a dependency | `uv lock --upgrade-package <pkg> && uv sync` |

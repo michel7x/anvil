@@ -15,7 +15,7 @@ Commits follow the Commitizen default format (`cz_conventional_commits`), as spe
 - **Type** (required): choose one.
 
   | Type | Use for |
-  |------|---------|
+  | ------ | --------- |
   | `feat` | A new feature |
   | `fix` | A bug fix |
   | `docs` | Documentation only |
