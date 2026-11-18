@@ -114,7 +114,8 @@ docs/ai/            how the AI context layer works
 
 GitHub Copilot owns source control for this repo: commits, branches, pushes, pull requests, issues, and PR review. See `.github/copilot-instructions.md`, and `docs/adr/0007-copilot-owns-source-control.md` for the reason.
 
-- Don't commit, push, or create branches, pull requests, or issues. Leave changes in the working tree for the developer to hand to Copilot.
+- Don't commit, push, or create branches, pull requests, or issues yourself. Leave changes in the working tree.
+- When the developer explicitly asks for a source-control action, hand it to Copilot with the `source-control` skill. Never hand off on your own initiative.
 - Read-only git commands, such as `git status`, `git diff`, and `git log`, are fine.
 - Update docs (`CLAUDE.md`, `docs/architecture.md`, ADRs) in the same change when behaviour or structure changes.
 
@@ -134,6 +135,6 @@ GitHub Copilot owns source control for this repo: commits, branches, pushes, pul
 
 - **Scoped rules**: `.claude/rules/*.md` load automatically for matching paths. Add or edit them there.
 - **Subagents**: `.claude/agents/` defines `planner`, `reviewer`, and `test-writer`.
-- **Skills**: `.claude/skills/` holds the reusable workflows. You invoke these workflows with `/plan-feature`, `/implement-feature`, `/write-tests`, `/review-changes`, and `/update-context`. Claude can also load `write-adr` and `add-dependency` on its own.
+- **Skills**: `.claude/skills/` holds the reusable workflows. You invoke these workflows with `/plan-feature`, `/implement-feature`, `/write-tests`, `/review-changes`, `/update-context`, `/run-anvil`, which runs and smoke-tests the CLI, and `/source-control`, which hands source-control requests to Copilot only when the developer asks. Claude can also load `write-adr` and `add-dependency` on its own.
 - **Hooks**: after edits, `.claude/settings.json` runs `ruff format` and `ruff check --fix` on changed Python files.
 - Put personal, uncommitted preferences in `CLAUDE.local.md`. It is git-ignored.

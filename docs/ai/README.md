@@ -16,7 +16,7 @@ This repository is developed with **Claude Code**, so its own context is Claude-
 
 ## What GitHub Copilot reads
 
-Copilot handles commits, branches, pushes, pull requests, issues, and code review, and acts only when the developer asks.
+Copilot handles commits, branches, pushes, pull requests, issues, and code review, and acts only when the developer asks. The developer can ask Copilot directly, or ask Claude, which passes the request on with the `source-control` skill (`.claude/skills/source-control/handoff.sh`).
 
 | Purpose | File |
 |---------|------|
