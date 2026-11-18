@@ -45,6 +45,20 @@ These are forbidden even if the developer asks. Explain the limit and leave the 
 
 Every commit follows the Commitizen format, as specified by [Conventional Commits 1.0.0](https://www.conventionalcommits.org/en/v1.0.0/#specification). The rules are in [`git-message-format.md`](git-message-format.md).
 
+## Pull requests
+
+- **Assignee**: assign every pull request you create to `michel7x`.
+- **Labels**: label every pull request when you create it, and check the labels again every time you update it, such as by pushing new commits to its branch. Add labels that now apply and remove labels that no longer apply.
+- Use only these labels. Pick every one that matches the changes in the whole pull request, not only the latest commit:
+
+  | Label | Use for | Commit types |
+  |-------|---------|--------------|
+  | `feature` | A new feature or capability | `feat` |
+  | `bug` | A bug fix | `fix` |
+  | `documentation` | Documentation, including `CLAUDE.md`, `docs/`, and ADRs | `docs` |
+  | `ci` | CI workflows and checks | `ci` |
+  | `maintenance` | Refactors, tests, formatting, performance, dependencies, build, and chores | `refactor`, `test`, `style`, `perf`, `build`, `chore`, `revert` |
+
 ## Safety
 
 - Never stage or commit secrets, `.env` files, or credentials. If you see any in a diff, stop and warn the developer.

@@ -15,7 +15,8 @@ argument-hint: "[issue number]"
    - **How it was verified**: list only checks that actually ran, with their results.
    - **Linked issues**: use `Closes #<n>` only if this work fully resolves the issue, otherwise `Refs #<n>`.
 5. If behaviour or structure changed but `CLAUDE.md`, `docs/architecture.md`, or an ADR did not, say so in the body.
-6. Run `gh pr create --base main --title "<title>" --body "<body>"`.
-7. Report the pull request URL.
+6. Choose the labels from the table in [`copilot-instructions.md`](../../copilot-instructions.md#pull-requests), based on all of the changes.
+7. Run `gh pr create --base main --title "<title>" --body "<body>" --assignee michel7x --label "<label>"`, repeating `--label` for each label.
+8. Report the pull request URL, the assignee, and the labels.
 
 Never merge the pull request or enable auto-merge.
